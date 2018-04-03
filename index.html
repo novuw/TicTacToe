@@ -11,8 +11,10 @@ $(document).ready(function(){
         $("#custom-modal").modal('show');
     });
 
-    $("#selectPieces").on("change", function(){
+    $("#selectGM").on("change", function(){
         $("#custom-modal").modal('hide');
+        var playerTeam = $('selectPieces').val();
+        console.log(playerTeam);
     });
 });
 </script>
@@ -47,13 +49,18 @@ $(document).ready(function(){
                 </div>
                 <div class="modal-body">
                     <select class="selectPieces" id="selectPieces">
-                        <option value="Team" disabled>Select Team</option>
-                        <option value="X">X</option>
-                        <option value="O">O</option>
+                        <option value="Team">Select Team</option>
+                        <option value="X" id="x">X</option>
+                        <option value="O" id="o">O</option>
+                    </select>
+                    <select class="selectGM" id="selectGM">
+                        <option value="Team">Select Mode</option>
+                        <option value="Single Player" id="sP">Single Player</option>
+                        <option value="Two Player" id="tP">Two Player</option>
                     </select>
                 </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Dismiss</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Confirm</button>
                     </div>
                 </div>
             </div>
