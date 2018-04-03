@@ -3,11 +3,17 @@
 <link href="https://fonts.googleapis.com/css?family=Muli&effect=fire-animation" rel="stylesheet">
 <link href="styles.css" type="text/css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">//inspired by https://coderbyte.com/tutorial/create-a-tic-tac-toe-game-using-html-css-and-jquery</script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!--modal code-->
+
 <script>
 $(document).ready(function(){
+    $(function() {
+        $("#custom-modal").modal('show');
+    });
 
-
-
+    $("#selectPieces").on("change", function(){
+        $("#custom-modal").modal('hide');
+    });
 });
 </script>
 <head>
@@ -32,6 +38,26 @@ $(document).ready(function(){
             </tr>
         </table>
 </div>
+<div id='custom-modal' class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Select Team</h4>
+                </div>
+                <div class="modal-body">
+                    <select class="selectPieces" id="selectPieces">
+                        <option value="Team" disabled>Select Team</option>
+                        <option value="X">X</option>
+                        <option value="O">O</option>
+                    </select>
+                </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Dismiss</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
 <h3 style="font-size: 15px; color: white; font-faily: Muli; display: inline-block; position: fixed; right: 5px; bottom: 5px;">Made By: Elijah Harbut</h3>
