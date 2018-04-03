@@ -44,7 +44,7 @@ $(document).ready(function(){
     //Game logic
     var table = document.querySelector('table');
     var turn = 0;
-    var checkedSpots = [];
+    var checkedSpots = [0];
     var $t1;
     var $t2;
     var $t3;
@@ -54,9 +54,19 @@ $(document).ready(function(){
     var $t7;
     var $t8;
     var $t9;
+    var reduced;
     table.addEventListener('click', function (ev) {
         var serviceID = ev.target.id;
         console.log(serviceID);
+        console.log(checkedSpots);
+        reduced = checkedSpots.reduce(function (accumulator, currentValue){return accumulator + currentValue;}, 0);
+        console.log(reduced);
+        if (reduced >= 36){
+            //Popup restart button
+            console.log("restart?");
+        } else{
+            console.log("Not over yet!");
+        }
         $t1 = $('#1').html();
         $t2 = $('#2').html();
         $t3 = $('#3').html();
@@ -66,22 +76,22 @@ $(document).ready(function(){
         $t7 = $('#7').html();
         $t8 = $('#8').html();
         $t9 = $('#9').html();
-        console.log($t1);
-        if ($t1 == $t2 == $t3 == 'x'){//($t1 == $t2 == $t3 && $t1, $t2, $t3 !== "")
+        console.log($t1, $t2, $t3, $t4, $t5, $t6, $t7, $t8, $t9);
+        if ($t1 == $t2 == $t3 && $t1 == 'x'){//($t1 == $t2 == $t3 && $t1, $t2, $t3 !== "")
             alert('Winner, Winner, Chicken Dinner!');
-        } else if ($t4 == $t5 == $t6 == 'x'){
+        } else if ($t4 == $t5 == $t6 && $t4 == 'x'){
             alert('Winner, Winner, Chicken Dinner!');
-        } else if ($t7 == $t8 == $t9 == 'x'){
+        } else if ($t7 == $t8 == $t9 && $t7 == 'x'){
             alert('Winner, Winner, Chicken Dinner!');
-        } else if ($t1 == $t4 == $t7 == 'x'){//Good
+        } else if ($t1 == $t4 == $t7 && $t1 == 'x'){//Good
             alert('Winner, Winner, Chicken Dinner!');
-        } else if ($t2 == $t5 == $t8 == 'x'){//Good
+        } else if ($t2 == $t5 == $t8 && $t2 == 'x'){//Good
             alert('Winner, Winner, Chicken Dinner!');
-        } else if ($t3 == $t6 == $t9 == 'x'){//Not good
+        } else if ($t3 == $t6 == $t9 && $t3 == 'x'){//Not good
             alert('Winner, Winner, Chicken Dinner!');
-        } else if ($t1 == $t5 == $t9 == 'x'){
+        } else if ($t1 == $t5 == $t9 && $t1 == 'x'){
             alert('Winner, Winner, Chicken Dinner!');
-        } else if ($t3 == $t5 == $t7 == 'x'){
+        } else if ($t3 == $t5 == $t7 && $t3 == 'x'){
             alert('Winner, Winner, Chicken Dinner!');
         } else {
             console.log('No dub.');
@@ -114,15 +124,14 @@ $(document).ready(function(){
         } else if(turn % 2 == 0){
             $('#'+serviceID).html("x");
             turn++;
-            checkedSpots.push(serviceID);
+            checkedSpots.push(parseInt(serviceID));
             return turn;
         } else {
             $('#'+serviceID).html("o");
             turn++;
-            checkedSpots.push(serviceID);
+            checkedSpots.push(parseInt(serviceID));
             return turn;
         }
-        //Check for Win
     });
 
 
