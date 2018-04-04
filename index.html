@@ -53,10 +53,10 @@ $(document).ready(function(){
         if (winnerCheck() != -1 && winnerCheck() != ""){
             if (winnerCheck() == 'x'){
                 //alert Player one wins!
-                    $('#winEdit').html('Player One won!');
+                    $('#winEdit').html('X won!');
                     $("#win-modal").modal('show');
               } else{
-                      $('winEdit').html('Player Two won!')
+                      $('winEdit').html('O won!')
                       $("#win-modal").modal('show');
             }
         }
@@ -64,10 +64,10 @@ $(document).ready(function(){
     function winnerCheckLogicO(){
         if (winnerCheck() != -1 && winnerCheck() != ""){
             if (winnerCheck() == "o"){
-                    $('#winEdit').html('Player One won!');
+                    $('#winEdit').html('O won!');
                     $("#win-modal").modal('show');
             } else{
-                    $('#winEdit').html('Player Two won!');
+                    $('#winEdit').html('X won!');
                     $("#win-modal").modal('show');
             }
         }
