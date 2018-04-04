@@ -82,14 +82,18 @@ $(document).ready(function(){
                     if (winnerCheck() != -1 && winnerCheck() != ""){
                         if (winnerCheck() == $team){
                             //alert Player one wins!
-                            alert('Player one wins!');
-                        } else{
-                            alert('Player two wins!');
+                                $('#winEdit').html('Player One won!');
+                                $("#win-modal").modal('show');
+                          } else{
+                                  $('winEdit').html('Player Two won!')
+                                  $("#win-modal").modal('show');
                         }
                     }
                     if (checkedSpots.length >= 9){
-                        alert('Draw!');
-                    }
+                        $(function() {
+                            $("#draw-modal").modal('show');
+                        });
+                     }
                     //should be checking for a draw
                     //Marks selected spot, checks if already used
                     if (checkedSpots.includes(parseInt(serviceID))){
@@ -122,15 +126,18 @@ $(document).ready(function(){
                     console.log(checkedSpots);
                     if (winnerCheck() != -1 && winnerCheck() != ""){
                         if (winnerCheck() == "o"){
-                            //alert Player one wins!
-                            alert('Player one wins!');
+                                $('#winEdit').html('Player One won!');
+                                $("#win-modal").modal('show');
                         } else{
-                            alert('Player two wins!');
+                                $('#winEdit').html('Player Two won!');
+                                $("#win-modal").modal('show');
                         }
                     }
                     if (checkedSpots.length >= 9){
-                        alert('Draw!');
-                    }
+                        $(function() {
+                            $("#draw-modal").modal('show');
+                        });
+                     }
                     //should be checking for a draw
                     //Marks selected spot, checks if already used
                     if (checkedSpots.includes(parseInt(serviceID))){
@@ -201,6 +208,32 @@ $(document).ready(function(){
                 </div>
             </div>
         </div>
+        <div id='win-modal' class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color: #cc0000"> <!-- #d9d9d9 #cccccc -->
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 id="winEdit" class="modal-title"></h4>
+                        </div>
+                            <div class="modal-footer" style="background-color: #cc0000">
+                                <button id="restart" style="background-color: #ffffff" type="button" class="btn btn-default" onClick="window.location.reload()">Play again?</button> <!--#33cc33-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id='draw-modal' class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header" style="background-color: #cc0000"> <!-- #d9d9d9 #cccccc -->
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Draw!</h4>
+                                </div>
+                                    <div class="modal-footer" style="background-color: #cc0000">
+                                        <button id="restart" style="background-color: #ffffff" type="button" class="btn btn-default"  onClick="window.location.reload()">Play again?</button> <!--#33cc33-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
 
 <h3 style="font-size: 15px; color: white; font-faily: Muli; display: inline-block; position: fixed; right: 5px; bottom: 5px;">Made By: Elijah Harbut</h3>
