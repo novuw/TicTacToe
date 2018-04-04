@@ -49,7 +49,29 @@ $(document).ready(function(){
             return -1;
         }
     }
-
+    function winnerCheckLogicX(){
+        if (winnerCheck() != -1 && winnerCheck() != ""){
+            if (winnerCheck() == 'x'){
+                //alert Player one wins!
+                    $('#winEdit').html('Player One won!');
+                    $("#win-modal").modal('show');
+              } else{
+                      $('winEdit').html('Player Two won!')
+                      $("#win-modal").modal('show');
+            }
+        }
+    }
+    function winnerCheckLogicO(){
+        if (winnerCheck() != -1 && winnerCheck() != ""){
+            if (winnerCheck() == "o"){
+                    $('#winEdit').html('Player One won!');
+                    $("#win-modal").modal('show');
+            } else{
+                    $('#winEdit').html('Player Two won!');
+                    $("#win-modal").modal('show');
+            }
+        }
+    }
     //Four combinations for game settings- SP/X, SP/O, TP/X, TP/O
     function gameRules($team, $gM){
         if ($gM == 'sP'){
@@ -79,16 +101,7 @@ $(document).ready(function(){
                 //Everything after occurs when you click on a cell in the table
                 table.addEventListener('click', function (ev) {
                     var serviceID = ev.target.id;
-                    if (winnerCheck() != -1 && winnerCheck() != ""){
-                        if (winnerCheck() == $team){
-                            //alert Player one wins!
-                                $('#winEdit').html('Player One won!');
-                                $("#win-modal").modal('show');
-                          } else{
-                                  $('winEdit').html('Player Two won!')
-                                  $("#win-modal").modal('show');
-                        }
-                    }
+                    //winnerCheckLogicX();
                     if (checkedSpots.length >= 9){
                         $(function() {
                             $("#draw-modal").modal('show');
@@ -105,11 +118,13 @@ $(document).ready(function(){
                         $('#'+serviceID).html($team);
                         turn++;
                         checkedSpots.push(parseInt(serviceID));
+                        winnerCheckLogicX();
                         return turn;
                     } else {
                         $('#'+serviceID).html($player2);
                         turn++;
                         checkedSpots.push(parseInt(serviceID));
+                        winnerCheckLogicX();
                         return turn;
                     }
                 });
@@ -124,15 +139,7 @@ $(document).ready(function(){
                 table.addEventListener('click', function (ev) {
                     var serviceID = ev.target.id;
                     console.log(checkedSpots);
-                    if (winnerCheck() != -1 && winnerCheck() != ""){
-                        if (winnerCheck() == "o"){
-                                $('#winEdit').html('Player One won!');
-                                $("#win-modal").modal('show');
-                        } else{
-                                $('#winEdit').html('Player Two won!');
-                                $("#win-modal").modal('show');
-                        }
-                    }
+                    //winnerCheckLogicO();
                     if (checkedSpots.length >= 9){
                         $(function() {
                             $("#draw-modal").modal('show');
@@ -148,11 +155,13 @@ $(document).ready(function(){
                         $('#'+serviceID).html("o");
                         turn++;
                         checkedSpots.push(parseInt(serviceID));
+                        winnerCheckLogicO();
                         return turn;
                     } else {
                         $('#'+serviceID).html("x");
                         turn++;
                         checkedSpots.push(parseInt(serviceID));
+                        winnerCheckLogicO();
                         return turn;
                     }
                 });
