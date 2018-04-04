@@ -17,6 +17,39 @@ $(document).ready(function(){
         var $gM = $('#selectGM option:selected').attr("id");
         gameRules($team, $gM);
     });
+    //Function for checking winners and updating cells
+    function winnerCheck(){
+        var $t1 = $('#1').html();
+        var $t2 = $('#2').html();
+        var $t3 = $('#3').html();
+        var $t4 = $('#4').html();
+        var $t5 = $('#5').html();
+        var $t6 = $('#6').html();
+        var $t7 = $('#7').html();
+        var $t8 = $('#8').html();
+        var $t9 = $('#9').html();
+        //Sees if anyone has won with X's
+        if ($t1 == $t2 && $t2 == $t3){//($t1 == $t2 == $t3 && $t1, $t2, $t3 !== "")
+            return $t1;
+        } else if ($t4 == $t5 && $t5 == $t6){
+            return $t4;
+        } else if ($t7 == $t8 && $t8 == $t9){
+            return $t7;
+        } else if ($t1 == $t4 && $t4 == $t7){//Good
+            return $t1;
+        } else if ($t2 == $t5 && $t5 == $t8){//Good
+            return $t2;
+        } else if ($t3 == $t6 && $t6 == $t9){//Not good
+            return $t3;
+        } else if ($t1 == $t5 && $t5 == $t9){
+            return $t1;
+        } else if ($t3 == $t5 && $t5 == $t7){
+            return $t3;
+        } else {
+            return -1;
+        }
+    }
+    //Four combinations for game settings- SP/X, SP/O, TP/X, TP/O
     function gameRules($team, $gM){
         if ($gM == 'sP'){
             console.log('sP');
@@ -27,116 +60,88 @@ $(document).ready(function(){
                 console.log('o');
                 var $player2 = 'x';
             }
+
+
+
+
+
+            //TWO PLAYER
         } else{
             console.log('tP');
             if ($team == 'x'){
                 console.log('x');
                 var $player2 = 'o';
+                //Game logic variables declared,
+                var table = document.querySelector('table');
+                var turn = 0;
+                var checkedSpots = [0];
+                //Everything after occurs when you click on a cell in the table
+                table.addEventListener('click', function (ev) {
+                    var serviceID = ev.target.id;
+                    if (winnerCheck() != -1 && winnerCheck() != ""){
+                        if (winnerCheck() == $team){
+                            //alert Player one wins!
+                            alert('Player one wins!');
+                        } else{
+                            alert('Player two wins!');
+                        }
+                    }
+                    //should be checking for a draw
+                    //Marks selected spot, checks if already used
+                    if (checkedSpots.includes(parseInt(serviceID))){
+                        console.log('Already Picked!');
+                        alert('Already picked!');
+                    } else if(turn % 2 == 0){
+                        $('#'+serviceID).html($team);
+                        turn++;
+                        checkedSpots.push(parseInt(serviceID));
+                        return turn;
+                    } else {
+                        $('#'+serviceID).html($player2);
+                        turn++;
+                        checkedSpots.push(parseInt(serviceID));
+                        return turn;
+                    }
+                });
             } else{
                 console.log('o');
                 var $player2 = 'x';
+                //Game logic variables declared,
+                var table = document.querySelector('table');
+                var turn = 0;
+                var checkedSpots = [];
+                //Everything after occurs when you click on a cell in the table
+                table.addEventListener('click', function (ev) {
+                    var serviceID = ev.target.id;
+                    console.log(checkedSpots);
+                    if (winnerCheck() != -1 && winnerCheck() != ""){
+                        if (winnerCheck() == "o"){
+                            //alert Player one wins!
+                            alert('Player one wins!');
+                        } else{
+                            alert('Player two wins!');
+                        }
+                    }
+                    //should be checking for a draw
+                    //Marks selected spot, checks if already used
+                    if (checkedSpots.includes(parseInt(serviceID))){
+                        console.log('Already Picked!');
+                        alert('Already picked!');
+                    } else if(turn % 2 == 0){
+                        $('#'+serviceID).html("o");
+                        turn++;
+                        checkedSpots.push(parseInt(serviceID));
+                        return turn;
+                    } else {
+                        $('#'+serviceID).html("x");
+                        turn++;
+                        checkedSpots.push(parseInt(serviceID));
+                        return turn;
+                    }
+                });
             }
         }
     }
-
-
-
-    //Game logic
-    var table = document.querySelector('table');
-    var turn = 0;
-    var checkedSpots = [0];
-    var $t1;
-    var $t2;
-    var $t3;
-    var $t4;
-    var $t5;
-    var $t6;
-    var $t7;
-    var $t8;
-    var $t9;
-    var reduced;
-    table.addEventListener('click', function (ev) {
-        var serviceID = ev.target.id;
-        console.log(serviceID);
-        console.log(checkedSpots);
-        reduced = checkedSpots.reduce(function (accumulator, currentValue){return accumulator + currentValue;}, 0);
-        console.log(reduced);
-        if (reduced >= 36){
-            //Popup restart button
-            console.log("restart?");
-        } else{
-            console.log("Not over yet!");
-        }
-        $t1 = $('#1').html();
-        $t2 = $('#2').html();
-        $t3 = $('#3').html();
-        $t4 = $('#4').html();
-        $t5 = $('#5').html();
-        $t6 = $('#6').html();
-        $t7 = $('#7').html();
-        $t8 = $('#8').html();
-        $t9 = $('#9').html();
-        console.log($t1, $t2, $t3, $t4, $t5, $t6, $t7, $t8, $t9);
-        if ($t1 == $t2 == $t3 && $t1 == 'x'){//($t1 == $t2 == $t3 && $t1, $t2, $t3 !== "")
-            alert('Winner, Winner, Chicken Dinner!');
-        } else if ($t4 == $t5 == $t6 && $t4 == 'x'){
-            alert('Winner, Winner, Chicken Dinner!');
-        } else if ($t7 == $t8 == $t9 && $t7 == 'x'){
-            alert('Winner, Winner, Chicken Dinner!');
-        } else if ($t1 == $t4 == $t7 && $t1 == 'x'){//Good
-            alert('Winner, Winner, Chicken Dinner!');
-        } else if ($t2 == $t5 == $t8 && $t2 == 'x'){//Good
-            alert('Winner, Winner, Chicken Dinner!');
-        } else if ($t3 == $t6 == $t9 && $t3 == 'x'){//Not good
-            alert('Winner, Winner, Chicken Dinner!');
-        } else if ($t1 == $t5 == $t9 && $t1 == 'x'){
-            alert('Winner, Winner, Chicken Dinner!');
-        } else if ($t3 == $t5 == $t7 && $t3 == 'x'){
-            alert('Winner, Winner, Chicken Dinner!');
-        } else {
-            console.log('No dub.');
-        }
-
-
-        if ($t1 == $t2 == $t3 == 'o'){//($t1 == $t2 == $t3 && $t1, $t2, $t3 !== "")
-            alert('Winner, Winner, Chicken Dinner!');
-        } else if ($t4 == $t5 == $t6 =='o'){
-            alert('Winner, Winner, Chicken Dinner!');
-        } else if ($t7 == $t8 == $t9 == 'o'){
-            alert('Winner, Winner, Chicken Dinner!');
-        } else if ($t1 == $t4 == $t7 == 'o'){//Good
-            alert('Winner, Winner, Chicken Dinner!');
-        } else if ($t2 == $t5 == $t8 == 'o'){//Good
-            alert('Winner, Winner, Chicken Dinner!');
-        } else if ($t3 == $t6 == $t9 == 'o'){//Not good
-            alert('Winner, Winner, Chicken Dinner!');
-        } else if ($t1 == $t5 == $t9 == 'o'){
-            alert('Winner, Winner, Chicken Dinner!');
-        } else if ($t3 == $t5 == $t7 == 'o'){
-            alert('Winner, Winner, Chicken Dinner!');
-        } else {
-            console.log('No dub.');
-        }
-        //Mark Spots
-        if (checkedSpots.includes(serviceID)){
-            console.log('Already Picked!');
-            alert('Already picked!');
-        } else if(turn % 2 == 0){
-            $('#'+serviceID).html("x");
-            turn++;
-            checkedSpots.push(parseInt(serviceID));
-            return turn;
-        } else {
-            $('#'+serviceID).html("o");
-            turn++;
-            checkedSpots.push(parseInt(serviceID));
-            return turn;
-        }
-    });
-
-
-
-
 });
 </script>
 <head>
