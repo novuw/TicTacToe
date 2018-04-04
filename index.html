@@ -49,6 +49,7 @@ $(document).ready(function(){
             return -1;
         }
     }
+
     //Four combinations for game settings- SP/X, SP/O, TP/X, TP/O
     function gameRules($team, $gM){
         if ($gM == 'sP'){
@@ -86,11 +87,16 @@ $(document).ready(function(){
                             alert('Player two wins!');
                         }
                     }
+                    if (checkedSpots.length >= 9){
+                        alert('Draw!');
+                    }
                     //should be checking for a draw
                     //Marks selected spot, checks if already used
                     if (checkedSpots.includes(parseInt(serviceID))){
                         console.log('Already Picked!');
                         alert('Already picked!');
+                        console.log(checkedSpots);
+                        return;
                     } else if(turn % 2 == 0){
                         $('#'+serviceID).html($team);
                         turn++;
@@ -122,11 +128,15 @@ $(document).ready(function(){
                             alert('Player two wins!');
                         }
                     }
+                    if (checkedSpots.length >= 9){
+                        alert('Draw!');
+                    }
                     //should be checking for a draw
                     //Marks selected spot, checks if already used
                     if (checkedSpots.includes(parseInt(serviceID))){
                         console.log('Already Picked!');
                         alert('Already picked!');
+                        return;
                     } else if(turn % 2 == 0){
                         $('#'+serviceID).html("o");
                         turn++;
