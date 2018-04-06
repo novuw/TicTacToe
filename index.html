@@ -68,12 +68,12 @@ $(document).ready(function(){
                 //alert Player one wins!
                     $('#winEdit').html('X won!');
                     $("#win-modal").modal('show');
-                    checkedSpots = [];//TRYING TO RESET CHECK ARRAY
+                    checkedSpots = [0];//TRYING TO RESET CHECK ARRAY
                     return checkedSpots;
               } else{
                       $('winEdit').html('O won!')
                       $("#win-modal").modal('show');
-                      checkedSpots = [];//TRYING TO RESET CHECK ARRAY
+                      checkedSpots = [0];//TRYING TO RESET CHECK ARRAY
                       return checkedSpots;
             }
         }
@@ -130,6 +130,7 @@ $(document).ready(function(){
                         console.log('Already Picked!');
                         alert('Already picked!');
                         console.log(checkedSpots);
+                        console.log("gang");
                         return;
                     } else if(turn % 2 == 0){
                         $('#'+serviceID).html($team);
@@ -242,7 +243,7 @@ $(document).ready(function(){
                             <h4 id="winEdit" class="modal-title"></h4>
                         </div>
                             <div class="modal-footer" style="background-color: #cc0000">
-                                <button id="restart" style="background-color: #ffffff" type="button" class="btn btn-default">Play Again?</button> <!--#33cc33-->
+                                <button id="restart" style="background-color: #ffffff" type="button" class="btn btn-default">Play Again</button> <!--#33cc33-->
                                 <button id="changeGM" style="background-color: #ffffff" type="button" class="btn btn-default" onClick="window.location.reload()">Change Game Mode</button> <!--#33cc33-->
                             </div>
                         </div>
