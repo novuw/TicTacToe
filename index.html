@@ -10,12 +10,83 @@ $(document).ready(function(){
     $(function() {
         $("#custom-modal").modal('show');
     });
-
-    $("#confirm").on("click", function(){
+    $('#x').on('click', function(){
         $("#custom-modal").modal('hide');
-        var $team = $('#selectTeam option:selected').attr("id");
-        var $gM = $('#selectGM option:selected').attr("id");
-        gameRules($team, $gM);
+        console.log('x');
+        var $player2 = 'o';
+        //Game logic variables declared,
+        var table = document.querySelector('table');
+        var turn = 0;
+        var checkedSpots = [0];
+        //Everything after occurs when you click on a cell in the table
+        table.addEventListener('click', function (ev) {
+            var serviceID = ev.target.id;
+            //winnerCheckLogicX();
+            if (checkedSpots.length >= 9){
+                $(function() {
+                    $("#draw-modal").modal('show');
+                });
+             }
+            //should be checking for a draw
+            //Marks selected spot, checks if already used
+            if (checkedSpots.includes(parseInt(serviceID))){
+                console.log('Already Picked!');
+                alert('Already picked!');
+                console.log(checkedSpots);
+                return;
+            } else if(turn % 2 == 0){
+                $('#'+serviceID).html('x');
+                turn++;
+                checkedSpots.push(parseInt(serviceID));
+                winnerCheckLogicX();
+                return turn;
+            } else {
+                $('#'+serviceID).html($player2);
+                turn++;
+                checkedSpots.push(parseInt(serviceID));
+                winnerCheckLogicX();
+                return turn;
+            }
+        });
+    });
+    $('#o').on('click', function(){
+        $("#custom-modal").modal('hide');
+        console.log('o');
+        var $player2 = 'x';
+        //Game logic variables declared,
+        var table = document.querySelector('table');
+        var turn = 0;
+        var checkedSpots = [0];
+        //Everything after occurs when you click on a cell in the table
+        table.addEventListener('click', function (ev) {
+            var serviceID = ev.target.id;
+            console.log(checkedSpots);
+            //winnerCheckLogicO();
+            if (checkedSpots.length >= 9){
+                $(function() {
+                    $("#draw-modal").modal('show');
+                });
+             }
+            //should be checking for a draw
+            //Marks selected spot, checks if already used
+            if (checkedSpots.includes(parseInt(serviceID))){
+                console.log('Already Picked!');
+                alert('Already picked!');
+                return;
+            } else if(turn % 2 == 0){
+                $('#'+serviceID).html("o");
+                turn++;
+                checkedSpots.push(parseInt(serviceID));
+                winnerCheckLogicO();
+                return turn;
+            } else {
+                $('#'+serviceID).html("x");
+                turn++;
+                checkedSpots.push(parseInt(serviceID));
+                winnerCheckLogicO();
+                return turn;
+            }
+        });
     });
     /*$('#restart').on('click', function ($team, $gM){
         $('#win-modal').modal('hide');
@@ -89,101 +160,6 @@ $(document).ready(function(){
         }
     }
     //Four combinations for game settings- SP/X, SP/O, TP/X, TP/O
-    function gameRules($team, $gM){
-        if ($gM == 'sP'){
-            console.log('sP');
-            if ($team == 'x'){
-                console.log('x');
-                var $player2 = 'o';
-            } else{
-                console.log('o');
-                var $player2 = 'x';
-            }
-
-
-
-
-
-            //TWO PLAYER
-        } else{
-            console.log('tP');
-            if ($team == 'x'){
-                console.log('x');
-                var $player2 = 'o';
-                //Game logic variables declared,
-                var table = document.querySelector('table');
-                var turn = 0;
-                var checkedSpots = [0];
-                //Everything after occurs when you click on a cell in the table
-                table.addEventListener('click', function (ev) {
-                    var serviceID = ev.target.id;
-                    //winnerCheckLogicX();
-                    if (checkedSpots.length >= 9){
-                        $(function() {
-                            $("#draw-modal").modal('show');
-                        });
-                     }
-                    //should be checking for a draw
-                    //Marks selected spot, checks if already used
-                    if (checkedSpots.includes(parseInt(serviceID))){
-                        console.log('Already Picked!');
-                        alert('Already picked!');
-                        console.log(checkedSpots);
-                        return;
-                    } else if(turn % 2 == 0){
-                        $('#'+serviceID).html($team);
-                        turn++;
-                        checkedSpots.push(parseInt(serviceID));
-                        winnerCheckLogicX();
-                        return turn;
-                    } else {
-                        $('#'+serviceID).html($player2);
-                        turn++;
-                        checkedSpots.push(parseInt(serviceID));
-                        winnerCheckLogicX();
-                        return turn;
-                    }
-                });
-            } else{
-                console.log('o');
-                var $player2 = 'x';
-                //Game logic variables declared,
-                var table = document.querySelector('table');
-                var turn = 0;
-                var checkedSpots = [0];
-                //Everything after occurs when you click on a cell in the table
-                table.addEventListener('click', function (ev) {
-                    var serviceID = ev.target.id;
-                    console.log(checkedSpots);
-                    //winnerCheckLogicO();
-                    if (checkedSpots.length >= 9){
-                        $(function() {
-                            $("#draw-modal").modal('show');
-                        });
-                     }
-                    //should be checking for a draw
-                    //Marks selected spot, checks if already used
-                    if (checkedSpots.includes(parseInt(serviceID))){
-                        console.log('Already Picked!');
-                        alert('Already picked!');
-                        return;
-                    } else if(turn % 2 == 0){
-                        $('#'+serviceID).html("o");
-                        turn++;
-                        checkedSpots.push(parseInt(serviceID));
-                        winnerCheckLogicO();
-                        return turn;
-                    } else {
-                        $('#'+serviceID).html("x");
-                        turn++;
-                        checkedSpots.push(parseInt(serviceID));
-                        winnerCheckLogicO();
-                        return turn;
-                    }
-                });
-            }
-        }
-    }
 });
 </script>
 <head>
@@ -219,22 +195,13 @@ $(document).ready(function(){
         <div class="modal-content">
             <div class="modal-header" style="background-color: #cc0000"> <!-- #d9d9d9 #cccccc -->
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title" style="color: white;">Game Settings: Please choose your mode and symbol.</h4>
+                    <h4 class="modal-title" style="color: white; text-align: center;"> Please choose your symbol.</h4>
                 </div>
                 <div class="modal-body" style="background-color: #ff3333;">
-                    <select class="selectGM" id="selectGM">
-                        <!--<option value="Team">Select Mode</option>-->
-                        <option value="Single Player" id="sP">Single Player</option>
-                        <option value="Two Player" id="tP">Two Player</option>
-                    </select>
-                    <select class="selectPieces" id="selectTeam">
-                        <!--<option value="Team">Select Team</option>-->
-                        <option value="X" id="x">X</option>
-                        <option value="O" id="o">O</option>
-                    </select>
+                    <center><button id="x" style="background-color: #ffffff" type="button" class="btn btn-default" data-dismiss="modal">X</button> <!--#33cc33-->
+                    <button id="o" style="background-color: #ffffff" type="button" class="btn btn-default" data-dismiss="modal">O</button> </center><!--#33cc33-->
                 </div>
                     <div class="modal-footer" style="background-color: #cc0000">
-                        <button id="confirm" style="background-color: #ffffff" type="button" class="btn btn-default" data-dismiss="modal">Confirm</button> <!--#33cc33-->
                     </div>
                 </div>
             </div>
