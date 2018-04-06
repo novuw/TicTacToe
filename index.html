@@ -66,11 +66,11 @@ $(document).ready(function(){
         if (winnerCheck() != -1 && winnerCheck() != ""){
             if (winnerCheck() == 'x'){
                 //alert Player one wins!
-                    $('#winEdit').html('X won!');
+                    $('#winEdit').html(<center>'X won!'</center>);
                     $("#win-modal").modal('show');
 
               } else{
-                      $('winEdit').html('O won!')
+                      $('winEdit').html(<center>'O won!'</center>);
                       $("#win-modal").modal('show');
                       table.off();
 
