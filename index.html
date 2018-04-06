@@ -17,7 +17,7 @@ $(document).ready(function(){
         var $gM = $('#selectGM option:selected').attr("id");
         gameRules($team, $gM);
     });
-    $('#restart').on('click', function ($team, $gM){
+    /*$('#restart').on('click', function ($team, $gM){
         $('#win-modal').modal('hide');
         $('#1').html("");
         $('#2').html("");
@@ -29,7 +29,7 @@ $(document).ready(function(){
         $('#8').html("");
         $('#9').html("");
         gameRules($team, $gM);
-    });
+    });*/
     //Function for checking winners and updating cells
     function winnerCheck(){
         var $t1 = $('#1').html();
@@ -68,13 +68,12 @@ $(document).ready(function(){
                 //alert Player one wins!
                     $('#winEdit').html('X won!');
                     $("#win-modal").modal('show');
-                    checkedSpots = [0];//TRYING TO RESET CHECK ARRAY
-                    return checkedSpots;
+
               } else{
                       $('winEdit').html('O won!')
                       $("#win-modal").modal('show');
-                      checkedSpots = [0];//TRYING TO RESET CHECK ARRAY
-                      return checkedSpots;
+                      table.off();
+
             }
         }
     }
@@ -130,7 +129,6 @@ $(document).ready(function(){
                         console.log('Already Picked!');
                         alert('Already picked!');
                         console.log(checkedSpots);
-                        console.log("gang");
                         return;
                     } else if(turn % 2 == 0){
                         $('#'+serviceID).html($team);
@@ -243,8 +241,7 @@ $(document).ready(function(){
                             <h4 id="winEdit" class="modal-title"></h4>
                         </div>
                             <div class="modal-footer" style="background-color: #cc0000">
-                                <button id="restart" style="background-color: #ffffff" type="button" class="btn btn-default">Play Again</button> <!--#33cc33-->
-                                <button id="changeGM" style="background-color: #ffffff" type="button" class="btn btn-default" onClick="window.location.reload()">Change Game Mode</button> <!--#33cc33-->
+                                <button id="changeGM" style="background-color: #ffffff" type="button" class="btn btn-default" onClick="window.location.reload()">Play Again</button> <!--#33cc33-->
                             </div>
                         </div>
                     </div>
@@ -257,7 +254,7 @@ $(document).ready(function(){
                                     <h4 class="modal-title">Draw!</h4>
                                 </div>
                                     <div class="modal-footer" style="background-color: #cc0000">
-                                        <button id="changeGM" style="background-color: #ffffff" type="button" class="btn btn-default"  onClick="window.location.reload()">Change Game Mode</button> <!--#33cc33-->
+                                        <button id="changeGM" style="background-color: #ffffff" type="button" class="btn btn-default"  onClick="window.location.reload()">Play Again</button> <!--#33cc33-->
                                     </div>
                                 </div>
                             </div>
