@@ -1,30 +1,21 @@
-body {
+body{
     background-color: #000000;
 }
-h1{
-    color: #ffffff;
+header{
     font-family: Muli;
+    text-align: center;
+    font-size: 60px;
+
 }
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
+.btn{
+    height:40px;
+    width:40px;
+    margin: auto;
 }
 
-#board {
-  margin: 0 auto;
-  margin-top: 200px;
-}
 
-#board tr td {
-  width: 80px;
-  height: 80px;
-  border: 1px solid #1c1c1c;
-  font-family: Muli;
-  font-size: 30px;
-  text-align: center;
-}
-
-#board tr td:hover {
-  background: #e4e4e4;
-  cursor: pointer;
+#console{
+    border-style: solid;
+    border-width: 1px 1px 1px 1px;
+    border-color: white;
 }
