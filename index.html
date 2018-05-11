@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Muli&effect=fire-animation" rel="stylesheet">
+<link href="styles.css" type="text/css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">//inspired by https://coderbyte.com/tutorial/create-a-tic-tac-toe-game-using-html-css-and-jquery</script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!--modal code-->
+
+<script src="javascript.js"></script>
+<head>
+    <meta charset= "UTF-8">
+    <title>TicTacToe</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+</head>
+<html>
+<body>
+    <h1 style="text-align: center; font-size: 60px;" class="font-effect-fire-animation">TicTacToe</h1>
+    <div class="container" style="position: relative; top: -100px;">
+        <table id='board' style="background-color: white;">
+            <tr>
+                <td id="1"></td><td id="2"></td><td id="3"></td>
+            </tr>
+            <tr>
+                <td id="4"></td><td id="5"></td><td id="6"></td>
+            </tr>
+            <tr>
+                <td id="7"></td><td id="8"></td><td id="9"></td>
+            </tr>
+        </table>
+</div>
+<div id='custom-modal' class="modal fade" role="dialog" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #cc0000"> <!-- #d9d9d9 #cccccc -->
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" style="color: white; text-align: center;"> Please choose your symbol.</h4>
+                </div>
+                <div class="modal-body" style="background-color: #ff3333;">
+                    <center><button id="x" style="background-color: #ffffff" type="button" class="btn btn-default" data-dismiss="modal">X</button> <!--#33cc33-->
+                    <button id="o" style="background-color: #ffffff" type="button" class="btn btn-default" data-dismiss="modal">O</button> </center><!--#33cc33-->
+                </div>
+                    <div class="modal-footer" style="background-color: #cc0000">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id='win-modal' class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color: #20ad30"> <!-- #d9d9d9 #cccccc -->
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <center><h4 id="winEdit" class="modal-title" style="color: white;"></h4></center>
+                        </div>
+                            <div class="modal-footer" style="background-color: #1b8e28">
+                                <center><button id="changeGM" style="background-color: #ffffff" type="button" class="btn btn-default" onClick="window.location.reload()">Play Again</button></center> <!--#33cc33-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id='draw-modal' class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header" style="background-color: #cc0000"> <!-- #d9d9d9 #cccccc -->
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Draw!</h4>
+                                </div>
+                                    <div class="modal-footer" style="background-color: #cc0000">
+                                        <button id="changeGM" style="background-color: #ffffff" type="button" class="btn btn-default"  onClick="window.location.reload()">Play Again</button> <!--#33cc33-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<h5 style="text-align: center; color: white; font-size: 15px; font-family: Muli;">Games played on three-in-a-row boards can be traced back to ancient Egypt, where such game boards have been found on roofing tiles dating from around 1300 BCE.</br>
+An early variation of tic-tac-toe was played in the Roman Empire, around the first century BC.</br> It was called terni lapilli (three pebbles at a time) and instead of having any number of pieces, each player only had three, thus they had to move them around to empty spaces to keep playing.</br> The game's grid markings have been found chalked all over Rome.</br> Another closely related ancient game is Three Men's Morris which is also played on a simple grid and requires three pieces in a row to finish, and Picaria, a game of the Puebloans.</h5>
+<h3 style="font-size: 15px; color: white; font-faily: Muli; display: inline-block; position: fixed; right: 5px; bottom: 5px;">Made By: Elijah Harbut</h3>
+</body>
+</html>
